@@ -9,6 +9,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,54 +55,78 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: "none",
   },
   tableCell: {
-    fontSize: 16,
+    fontSize: 14,
+    color: "#FFFFFF",
     borderBottom: "none",
+    verticalAlign: "center",
+    horizontalAlign: "center",
   },
   tableCell2: {
     width: 30,
-    fontSize: 16,
+    fontSize: 14,
     background: "#3B3B3B",
     borderBottom: "none",
+  },
+  centeredBox: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    background: "#8C8D8D",
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    fontSize: 12,
+  },
+  canContainer: {
+    // display: "flex",
+    // alignItems: "center",
+    // justifyContent: "center",
+
+    height: 40,
+    color: "#ffffff",
+    borderColor: "#3E3E3E",
+    borderRadius: 25,
+    textTransform: "none",
+    padding: 0,
+    paddingLeft: 10,
+  },
+  canBox: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    background: "#8C8D8D",
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    fontSize: 12,
+    marginLeft: 7,
+    border: '4px solid',
+    borderColor: "#ffffff",
   },
 }));
 
 function createData(
   name: string,
-  candidate: number,
-  vs: number,
-  business: number,
+  skill: string,
+  canProficiency: number,
+  compare: string,
+  bizProficiency: number
 ) {
-  return { name, candidate, vs, business};
-}
-function createData2(
-  nametwo: string,
-  candidate: number,
-  vs: number,
-  business: number,
- 
-) {
-  return { nametwo, candidate, vs, business};
-}
-function createData3(
-  namethree: string,
-  candidate: number,
-  vs: number,
-  business: number,
-  
-) {
-  return { namethree, candidate, vs, business};
+  return { name, skill, canProficiency, compare, bizProficiency };
 }
 
-const applications = [createData("", 159, 6.0, 24)];
+const applications = [createData("", "Machine Learning", 1, "25%", 4)];
 
-const careers = [createData2("", 159, 6.0, 24)];
+const careers = [createData("", "Machine Learning", 1, "25%", 4)];
 
 const deliveries = [
-  createData3("", 159, 6.0, 24),
-  createData3("", 159, 6.0, 24),
-  createData3("", 159, 6.0, 24),
-  createData3("", 159, 6.0, 24),
-  createData3("", 159, 6.0, 24),
+  createData("", "Machine Learning", 1, "25%", 4),
+  createData("", "Machine Learning", 1, "25%", 4),
+  createData("", "Machine Learning", 1, "25%", 4),
+  createData("", "Machine Learning", 1, "25%", 4),
+  createData("", "Machine Learning", 1, "25%", 4),
 ];
 
 export default function Dash() {
@@ -142,13 +169,34 @@ export default function Dash() {
                       {row.name}
                     </TableCell>
                     <TableCell className={classes.tableCell} align="right">
-                      {row.candidate}
+                      <Button
+                        variant="outlined"
+                        className={classes.canContainer}
+                      >
+                        <Grid
+                          container
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                        >
+                          {row.skill}
+                          <Box className={classes.canBox}>
+                            {row.canProficiency}
+                          </Box>
+                        </Grid>
+                      </Button>
                     </TableCell>
                     <TableCell className={classes.tableCell2} align="center">
-                      {row.vs}
+                      <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Box className={classes.centeredBox}>{row.compare}</Box>
+                      </Box>
                     </TableCell>
                     <TableCell className={classes.tableCell} align="left">
-                      {row.business}
+                      {row.bizProficiency}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -173,22 +221,43 @@ export default function Dash() {
               </TableHead>
               <TableBody>
                 {careers.map((row) => (
-                  <TableRow key={row.nametwo}>
+                  <TableRow key={row.name}>
                     <TableCell
                       className={classes.tableCell}
                       component="th"
                       scope="row"
                     >
-                      {row.nametwo}
+                      {row.name}
                     </TableCell>
                     <TableCell className={classes.tableCell} align="right">
-                      {row.candidate}
+                      <Button
+                        variant="outlined"
+                        className={classes.canContainer}
+                      >
+                        <Grid
+                          container
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                        >
+                          {row.skill}
+                          <Box className={classes.canBox}>
+                            {row.canProficiency}
+                          </Box>
+                        </Grid>
+                      </Button>
                     </TableCell>
                     <TableCell className={classes.tableCell2} align="center">
-                      {row.vs}
+                      <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Box className={classes.centeredBox}>{row.compare}</Box>
+                      </Box>
                     </TableCell>
                     <TableCell className={classes.tableCell} align="left">
-                      {row.business}
+                      {row.bizProficiency}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -213,22 +282,43 @@ export default function Dash() {
               </TableHead>
               <TableBody>
                 {deliveries.map((row) => (
-                  <TableRow key={row.namethree}>
+                  <TableRow key={row.name}>
                     <TableCell
                       className={classes.tableCell}
                       component="th"
                       scope="row"
                     >
-                      {row.namethree}
+                      {row.name}
                     </TableCell>
                     <TableCell className={classes.tableCell} align="right">
-                      {row.candidate}
+                      <Button
+                        variant="outlined"
+                        className={classes.canContainer}
+                      >
+                        <Grid
+                          container
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                        >
+                          {row.skill}
+                          <Box className={classes.canBox}>
+                            {row.canProficiency}
+                          </Box>
+                        </Grid>
+                      </Button>
                     </TableCell>
                     <TableCell className={classes.tableCell2} align="center">
-                      {row.vs}
+                      <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Box className={classes.centeredBox}>{row.compare}</Box>
+                      </Box>
                     </TableCell>
                     <TableCell className={classes.tableCell} align="left">
-                      {row.business}
+                      {row.bizProficiency}
                     </TableCell>
                   </TableRow>
                 ))}
