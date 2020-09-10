@@ -22,7 +22,7 @@ export default function Content() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3} direction="row">
+      <Grid container direction="row">
         <Grid item xs={3}>
           <SideBar />
         </Grid>

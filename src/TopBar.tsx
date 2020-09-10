@@ -86,7 +86,6 @@ export default function TopBar() {
           <Container disableGutters className={classes.spacing2}>
             <Grid
               container
-              spacing={3}
               direction="row"
               justify="space-between"
             >
