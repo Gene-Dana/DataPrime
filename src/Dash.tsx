@@ -187,11 +187,11 @@ const applications = [createData("", "Machine Learning", 1, "25%", 4)];
 const careers = [createData("", "Machine Learning", 1, "25%", 4)];
 
 const deliveries = [
-  createData("", "AWS", 1, "25%", 4),
-  createData("", "MySQL", 1, "25%", 4),
-  createData("", "MongoDB", 1, "25%", 4),
-  createData("", "TensorFlow", 1, "25%", 4),
-  createData("", "Machine Learning", 1, "25%", 4),
+  createData("", "AWS", 1, "50%", 2),
+  createData("", "MySQL", 1, "50%", 2),
+  createData("", "MongoDB", 1, "50%", 2),
+  createData("", "TensorFlow", 1, "50%", 2),
+  createData("", "Machine Learning", 1, "50%", 2),
 ];
 
 export default function Dash() {
@@ -397,7 +397,7 @@ export default function Dash() {
                             textColor: '#9EE1F3',
                             trailColor: '#3e98c7',
                             backgroundColor: '#3e98c7',
-                          })} value={13} maxValue={16} text={row.bizProficiency.toString()} />
+                          })} value={8} maxValue={16} text={row.bizProficiency.toString()} />
                           {row.skill}
                         </Grid>
                       </Button>
