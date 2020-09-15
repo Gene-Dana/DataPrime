@@ -23,7 +23,7 @@ export default function Content() {
   return (
     <div className={classes.root}>
       <Grid container direction="row">
-        <Grid item xs={3}>
+        <Grid>
           <SideBar />
         </Grid>
         <Grid item xs={9}>

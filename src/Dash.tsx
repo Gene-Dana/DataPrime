@@ -12,6 +12,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 40,
   },
   paper: {
-    background: "#1D1E22",
+    background: "transparent",
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -37,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
   table: {
     background: "#1D1E22",
     minWidth: 650,
+  },
+  tableContainer: {
+    boxShadow: "none",
+    background: 'transparent',
   },
   tableHead1: {
     color: "#FFFFFF",
@@ -78,6 +84,39 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
     fontSize: 12,
   },
+  centeredBoxLow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    background: '#f88',
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    fontSize: 12,
+  },
+  centeredBoxMid: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    background: "#D7B059",
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    fontSize: 12,
+  },
+  centeredBoxHigh: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    background: "#8C8D8D",
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    fontSize: 12,
+  },
   canContainer: {
     // display: "flex",
     // alignItems: "center",
@@ -105,6 +144,32 @@ const useStyles = makeStyles((theme) => ({
     border: '4px solid',
     borderColor: "#ffffff",
   },
+  circleProg: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
+
+  },
+  canContainerRight: {
+    // display: "flex",
+    // alignItems: "center",
+    // justifyContent: "center",
+
+    height: 40,
+    color: "#ffffff",
+    borderColor: "#3E3E3E",
+    borderRadius: 25,
+    textTransform: "none",
+    padding: 0,
+    paddingRight: 10,
+  },
+  naCell: {
+    fontSize: 14,
+    color: "#8C8D8D",
+    borderBottom: "none",
+    verticalAlign: "center",
+    horizontalAlign: "center",
+  },
 }));
 
 function createData(
@@ -122,10 +187,10 @@ const applications = [createData("", "Machine Learning", 1, "25%", 4)];
 const careers = [createData("", "Machine Learning", 1, "25%", 4)];
 
 const deliveries = [
-  createData("", "Machine Learning", 1, "25%", 4),
-  createData("", "Machine Learning", 1, "25%", 4),
-  createData("", "Machine Learning", 1, "25%", 4),
-  createData("", "Machine Learning", 1, "25%", 4),
+  createData("", "AWS", 1, "25%", 4),
+  createData("", "MySQL", 1, "25%", 4),
+  createData("", "MongoDB", 1, "25%", 4),
+  createData("", "TensorFlow", 1, "25%", 4),
   createData("", "Machine Learning", 1, "25%", 4),
 ];
 
@@ -137,7 +202,7 @@ export default function Dash() {
       <Container disableGutters>
         <Typography className={classes.first}>Techical Skills</Typography>
         <Container disableGutters className={classes.spaced}>
-          <TableContainer component={Paper}>
+          <TableContainer className={classes.tableContainer} component={Paper}>
             <Table className={classes.table} aria-label="simple table">
               {/* //Applications==================================================================== */}
 
@@ -192,11 +257,30 @@ export default function Dash() {
                         alignItems="center"
                         justifyContent="center"
                       >
-                        <Box className={classes.centeredBox}>{row.compare}</Box>
+                        <Box className={classes.centeredBoxLow}>{row.compare}</Box>
                       </Box>
                     </TableCell>
                     <TableCell className={classes.tableCell} align="left">
-                      {row.bizProficiency}
+                      <Button
+                        variant="outlined"
+                        className={classes.canContainerRight}
+                      >
+                        <Grid
+                          container
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                        >
+                          <CircularProgressbar className={classes.circleProg} styles={buildStyles({
+                            textSize: '30px',
+                            pathColor: '#9EE1F3',
+                            textColor: '#9EE1F3',
+                            trailColor: '#3e98c7',
+                            backgroundColor: '#3e98c7',
+                          })} value={13} maxValue={16} text={row.bizProficiency.toString()} />
+                          {row.skill}
+                        </Grid>
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -230,34 +314,13 @@ export default function Dash() {
                       {row.name}
                     </TableCell>
                     <TableCell className={classes.tableCell} align="right">
-                      <Button
-                        variant="outlined"
-                        className={classes.canContainer}
-                      >
-                        <Grid
-                          container
-                          direction="row"
-                          justify="space-between"
-                          alignItems="center"
-                        >
-                          {row.skill}
-                          <Box className={classes.canBox}>
-                            {row.canProficiency}
-                          </Box>
-                        </Grid>
-                      </Button>
+                      <span className={classes.naCell} > No Skills Matched </span>
                     </TableCell>
                     <TableCell className={classes.tableCell2} align="center">
-                      <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Box className={classes.centeredBox}>{row.compare}</Box>
-                      </Box>
+                      <span className={classes.naCell} > N/A</span>
                     </TableCell>
                     <TableCell className={classes.tableCell} align="left">
-                      {row.bizProficiency}
+                      <span className={classes.naCell} > No Skills Matched </span>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -314,11 +377,30 @@ export default function Dash() {
                         alignItems="center"
                         justifyContent="center"
                       >
-                        <Box className={classes.centeredBox}>{row.compare}</Box>
+                        <Box className={classes.centeredBoxMid}>{row.compare}</Box>
                       </Box>
                     </TableCell>
                     <TableCell className={classes.tableCell} align="left">
-                      {row.bizProficiency}
+                      <Button
+                        variant="outlined"
+                        className={classes.canContainerRight}
+                      >
+                        <Grid
+                          container
+                          direction="row"
+                          justify="space-between"
+                          alignItems="center"
+                        >
+                          <CircularProgressbar className={classes.circleProg} styles={buildStyles({
+                            textSize: '30px',
+                            pathColor: '#9EE1F3',
+                            textColor: '#9EE1F3',
+                            trailColor: '#3e98c7',
+                            backgroundColor: '#3e98c7',
+                          })} value={13} maxValue={16} text={row.bizProficiency.toString()} />
+                          {row.skill}
+                        </Grid>
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}

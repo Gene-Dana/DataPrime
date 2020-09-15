@@ -8,8 +8,11 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",
+    "react-circular-progressbar": "^2.0.3",
     "react-dom": "latest",
+    "react-pro-sidebar": "^0.4.4",
     "react-scripts": "latest",
+    "react-switch": "^5.0.1",
     "typescript": "latest"
   },
   "scripts": {
